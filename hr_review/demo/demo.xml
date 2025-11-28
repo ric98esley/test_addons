@@ -1,3 +1,136 @@
 <odoo>
+  <record id="demo_review_1" model="hr.performance.review">
+    <field name="employee_id" ref="hr.employee_qdp" />
+    <field name="reviewer_id" ref="hr.employee_chs" />
+    <field
+            name="review_date"
+            eval="(DateTime.today() - relativedelta(months=3)).strftime('%Y-%m-%d')"
+        />
+    <field name="score">92.5</field>
+    <field
+            name="strengths"
+        >Outstanding technical skills and leadership abilities. Consistently
+      delivers high-quality work ahead of schedule. Excellent team collaboration and mentoring of
+      junior developers.</field>
+    <field
+            name="weaknesses"
+        >Could improve documentation practices. Sometimes takes on too many
+      tasks simultaneously, which may lead to burnout.</field>
+    <field
+            name="comments"
+        >Exceptional performance this quarter. Has demonstrated strong project
+      management skills and technical expertise. Ready for increased responsibilities.</field>
+    <field
+            name="goals_next_period"
+        >Lead the new product development initiative. Mentor 2-3 junior
+      developers. Complete advanced certification in cloud architecture.</field>
+    <field name="state">completed</field>
+  </record>
 
+  <!-- Review 2: Average Performer - Pending -->
+  <record id="demo_review_2" model="hr.performance.review">
+    <field name="employee_id" ref="hr.employee_fpi" />
+    <field name="reviewer_id" ref="hr.employee_chs" />
+    <field
+            name="review_date"
+            eval="(DateTime.today() - relativedelta(months=1)).strftime('%Y-%m-%d')"
+        />
+    <field name="score">75.0</field>
+    <field
+            name="strengths"
+        >Reliable and consistent performer. Good attention to detail. Follows
+      processes and procedures well.</field>
+    <field
+            name="weaknesses"
+        >Limited initiative for new projects. Could improve communication
+      skills with stakeholders. Needs to develop more technical depth.</field>
+    <field
+            name="comments"
+        >Solid performance meeting expectations. Would benefit from taking on
+      more challenging assignments to develop skills.</field>
+    <field
+            name="goals_next_period"
+        >Complete two technical training courses. Take ownership of one
+      client project. Improve presentation skills through workshops.</field>
+    <field name="state">pending</field>
+  </record>
+
+  <!-- Review 3: New Employee - Pending -->
+  <record id="demo_review_3" model="hr.performance.review">
+    <field name="employee_id" ref="hr.employee_qdp" />
+    <field name="reviewer_id" ref="hr.employee_chs" />
+    <field name="review_date" eval="DateTime.today().strftime('%Y-%m-%d')" />
+    <field name="score">68.0</field>
+    <field
+            name="strengths"
+        >Quick learner with great enthusiasm. Good problem-solving abilities.
+      Positive attitude and willingness to help others.</field>
+    <field
+            name="weaknesses"
+        >Still learning company processes and standards. Time management needs
+      improvement. Requires more supervision on complex tasks.</field>
+    <field
+            name="comments"
+        >Good progress for a new team member. Shows potential for growth with
+      proper guidance and training.</field>
+    <field
+            name="goals_next_period"
+        >Complete onboarding training program. Shadow senior team
+      members on 3 projects. Develop proficiency in core technologies.</field>
+    <field name="state">pending</field>
+  </record>
+
+  <!-- Review 4: Historical Review - Completed -->
+  <record id="demo_review_4" model="hr.performance.review">
+    <field name="employee_id" ref="hr.employee_qdp" />
+    <field name="reviewer_id" ref="hr.employee_chs" />
+    <field
+            name="review_date"
+            eval="(DateTime.today() - relativedelta(months=6)).strftime('%Y-%m-%d')"
+        />
+    <field name="score">88.0</field>
+    <field
+            name="strengths"
+        >Strong technical foundation. Good collaboration skills. Proactive in
+      identifying process improvements.</field>
+    <field
+            name="weaknesses"
+        >Could enhance leadership presence. Needs to develop strategic
+      thinking for larger initiatives.</field>
+    <field name="comments">Consistently strong performer. Ready to take on more complex
+      responsibilities.</field>
+    <field
+            name="goals_next_period"
+        >Lead a cross-functional project. Develop leadership skills
+      through management training. Mentor junior team members.</field>
+    <field name="state">completed</field>
+  </record>
+
+  <!-- Review 5: Another Employee - Completed -->
+  <record id="demo_review_5" model="hr.performance.review">
+    <field name="employee_id" ref="hr.employee_fpi" />
+    <field name="reviewer_id" ref="hr.employee_chs" />
+    <field
+            name="review_date"
+            eval="(DateTime.today() - relativedelta(months=4)).strftime('%Y-%m-%d')"
+        />
+    <field name="score">72.5</field>
+    <field
+            name="strengths"
+        >Dependable and organized. Good analytical skills. Maintains high
+      quality standards.</field>
+    <field
+            name="weaknesses"
+        >Limited exposure to newer technologies. Could be more proactive in
+      seeking feedback. Hesitant to take on leadership roles.</field>
+    <field
+            name="comments"
+        >Meets performance expectations. Would benefit from stepping outside
+      comfort zone with new challenges.</field>
+    <field
+            name="goals_next_period"
+        >Learn new technology stack. Participate in at least one
+      innovation project. Improve stakeholder communication.</field>
+    <field name="state">completed</field>
+  </record>
 </odoo>

@@ -1,2 +1,267 @@
 <odoo>
+  <!-- Tree View -->
+  <record id="view_hr_performance_review_tree" model="ir.ui.view">
+    <field name="name">hr.performance.review.tree</field>
+    <field name="model">hr.performance.review</field>
+    <field name="arch" type="xml">
+      <tree decoration-success="state=='completed'" decoration-info="state=='pending'">
+        <field name="employee_id" />
+        <field name="review_date" />
+        <field name="reviewer_id" />
+        <field name="score" widget="progressbar" />
+        <field name="employee_department_id" />
+        <field
+                    name="state"
+                    widget="badge"
+                    decoration-success="state=='completed'"
+                    decoration-info="state=='pending'"
+                />
+      </tree>
+    </field>
+  </record>
+
+  <!-- Form View -->
+  <record id="view_hr_performance_review_form" model="ir.ui.view">
+    <field name="name">hr.performance.review.form</field>
+    <field name="model">hr.performance.review</field>
+    <field name="arch" type="xml">
+      <form string="Performance Review">
+        <header>
+          <button
+                        name="action_complete"
+                        string="Mark as Completed"
+                        type="object"
+                        class="oe_highlight"
+                        states="pending"
+                    />
+          <button
+                        name="action_reset_to_pending"
+                        string="Reset to Pending"
+                        type="object"
+                        states="completed"
+                    />
+          <field
+                        name="state"
+                        widget="statusbar"
+                        statusbar_visible="pending,completed"
+                    />
+        </header>
+        <sheet>
+          <group>
+            <group name="employee_info" string="Employee Information">
+              <field name="employee_id" options="{'no_create': True}" />
+              <field name="employee_department_id" readonly="1" />
+              <field name="employee_job_id" readonly="1" />
+            </group>
+            <group name="review_info" string="Review Information">
+              <field name="review_date" />
+              <field name="reviewer_id" options="{'no_create': True}" />
+              <field name="score" widget="percentage" />
+            </group>
+          </group>
+          <notebook>
+            <page string="Evaluation" name="evaluation">
+              <group>
+                <field
+                                    name="strengths"
+                                    placeholder="Describe the employee's strengths and positive aspects..."
+                                />
+                <field
+                                    name="weaknesses"
+                                    placeholder="Identify areas where the employee can improve..."
+                                />
+                <field
+                                    name="comments"
+                                    placeholder="Additional qualitative observations..."
+                                />
+              </group>
+            </page>
+            <page string="Goals &amp; Objectives" name="goals">
+              <group>
+                <field
+                                    name="goals_next_period"
+                                    placeholder="Define objectives and goals for the next evaluation period..."
+                                />
+              </group>
+            </page>
+          </notebook>
+        </sheet>
+        <chatter />
+      </form>
+    </field>
+  </record>
+
+  <!-- Kanban View -->
+  <record id="view_hr_performance_review_kanban" model="ir.ui.view">
+    <field name="name">hr.performance.review.kanban</field>
+    <field name="model">hr.performance.review</field>
+    <field name="arch" type="xml">
+      <kanban default_group_by="state" class="o_kanban_small_column">
+        <field name="employee_id" />
+        <field name="review_date" />
+        <field name="reviewer_id" />
+        <field name="score" />
+        <field name="state" />
+        <field name="employee_department_id" />
+        <templates>
+          <t t-name="kanban-box">
+            <div
+                            t-attf-class="oe_kanban_card oe_kanban_global_click #{record.score.raw_value >= 80 ? 'oe_kanban_color_5' : record.score.raw_value >= 60 ? 'oe_kanban_color_3' : 'oe_kanban_color_2'}"
+                        >
+              <div class="o_kanban_card_header">
+                <div class="o_kanban_card_header_title">
+                  <div class="o_primary">
+                    <strong>
+                      <field name="employee_id" />
+                    </strong>
+                  </div>
+                  <div class="o_secondary">
+                    <i class="fa fa-calendar" />
+                    <field name="review_date" />
+                  </div>
+                </div>
+              </div>
+              <div class="o_kanban_card_content">
+                <div class="o_kanban_card_body">
+                  <div>
+                    <i class="fa fa-user" /> Reviewer: <field name="reviewer_id" />
+                  </div>
+                  <div t-if="record.employee_department_id.raw_value">
+                    <i class="fa fa-building" />
+                    <field name="employee_department_id" />
+                  </div>
+                  <div t-if="record.score.raw_value">
+                    <i class="fa fa-star" /> Score: <field name="score" /> / 100 </div>
+                </div>
+              </div>
+            </div>
+          </t>
+        </templates>
+      </kanban>
+    </field>
+  </record>
+
+  <!-- Search View -->
+  <record id="view_hr_performance_review_search" model="ir.ui.view">
+    <field name="name">hr.performance.review.search</field>
+    <field name="model">hr.performance.review</field>
+    <field name="arch" type="xml">
+      <search string="Search Performance Reviews">
+        <field name="employee_id" />
+        <field name="reviewer_id" />
+        <field name="employee_department_id" />
+        <filter string="Pending" name="pending" domain="[('state','=','pending')]" />
+        <filter
+                    string="Completed"
+                    name="completed"
+                    domain="[('state','=','completed')]"
+                />
+        <separator />
+        <filter
+                    string="High Score (≥80)"
+                    name="high_score"
+                    domain="[('score','>=',80)]"
+                />
+        <filter
+                    string="Medium Score (60-79)"
+                    name="medium_score"
+                    domain="[('score','>=',60),('score','&lt;',80)]"
+                />
+        <filter
+                    string="Low Score (&lt;60)"
+                    name="low_score"
+                    domain="[('score','&lt;',60)]"
+                />
+        <separator />
+        <filter string="Review Date" name="review_date" date="review_date" />
+        <group expand="0" string="Group By">
+          <filter
+                        string="Employee"
+                        name="group_employee"
+                        context="{'group_by':'employee_id'}"
+                    />
+          <filter
+                        string="Reviewer"
+                        name="group_reviewer"
+                        context="{'group_by':'reviewer_id'}"
+                    />
+          <filter
+                        string="Department"
+                        name="group_department"
+                        context="{'group_by':'employee_department_id'}"
+                    />
+          <filter string="Status" name="group_state" context="{'group_by':'state'}" />
+          <filter
+                        string="Review Date"
+                        name="group_review_date"
+                        context="{'group_by':'review_date'}"
+                    />
+        </group>
+      </search>
+    </field>
+  </record>
+
+  <!-- Actions -->
+  <record id="action_hr_performance_review" model="ir.actions.act_window">
+    <field name="name">Performance Reviews</field>
+    <field name="res_model">hr.performance.review</field>
+    <field name="view_mode">kanban,tree,form</field>
+    <field name="search_view_id" ref="view_hr_performance_review_search" />
+    <field name="help" type="html">
+      <p class="o_view_nocontent_smiling_face">
+        Create a new performance review
+      </p>
+      <p>
+        Track and manage employee performance evaluations.
+      </p>
+    </field>
+  </record>
+
+  <record id="action_hr_performance_review_pending" model="ir.actions.act_window">
+    <field name="name">Pending Reviews</field>
+    <field name="res_model">hr.performance.review</field>
+    <field name="view_mode">kanban,tree,form</field>
+    <field name="domain">[('state','=','pending')]</field>
+    <field name="context">{'default_state': 'pending'}</field>
+  </record>
+
+  <record id="action_hr_performance_review_completed" model="ir.actions.act_window">
+    <field name="name">Completed Reviews</field>
+    <field name="res_model">hr.performance.review</field>
+    <field name="view_mode">tree,form</field>
+    <field name="domain">[('state','=','completed')]</field>
+  </record>
+
+  <!-- Menus -->
+  <menuitem
+        id="menu_hr_performance_review_root"
+        name="Performance Reviews"
+        parent="hr.menu_hr_root"
+        sequence="50"
+    />
+
+  <menuitem
+        id="menu_hr_performance_review_all"
+        name="All Reviews"
+        parent="menu_hr_performance_review_root"
+        action="action_hr_performance_review"
+        sequence="1"
+    />
+
+  <menuitem
+        id="menu_hr_performance_review_pending"
+        name="Pending Reviews"
+        parent="menu_hr_performance_review_root"
+        action="action_hr_performance_review_pending"
+        sequence="2"
+    />
+
+  <menuitem
+        id="menu_hr_performance_review_completed"
+        name="Completed Reviews"
+        parent="menu_hr_performance_review_root"
+        action="action_hr_performance_review_completed"
+        sequence="3"
+    />
+
 </odoo>

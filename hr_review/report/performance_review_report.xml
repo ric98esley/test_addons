@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <!-- Report Action -->
+    <record id="action_report_hr_performance_review" model="ir.actions.report">
+        <field name="name">Performance Review Report</field>
+        <field name="model">hr.employee</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">hr_review.report_performance_review_template</field>
+        <field name="report_file">hr_review.report_performance_review_template</field>
+        <field name="binding_model_id" ref="hr.model_hr_employee" />
+        <field name="binding_type">report</field>
+        <field
+            name="print_report_name"
+        >'Performance Review - %s' % (object.name)</field>
+    </record>
+
+    <!-- Report Template -->
+    <template id="report_performance_review_template">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="employee">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <div class="oe_structure" />
+
+                        <!-- Header -->
+                        <div class="row">
+                            <div class="col-12">
+                                <h2>Performance Review Report</h2>
+                                <h3>
+                                    <span t-field="employee.name" />
+                                </h3>
+                                <p>
+                                    <strong>Department:</strong>
+                                    <span t-field="employee.department_id.name" />
+                                    <br />
+                                    <strong>Job Position:</strong>
+                                    <span t-field="employee.job_id.name" />
+                                    <br />
+                                    <strong>Report Generated:</strong>
+                                    <span
+                                        t-esc="context_timestamp(datetime.datetime.now()).strftime('%Y-%m-%d %H:%M')"
+                                    />
+                                </p>
+                            </div>
+                        </div>
+
+                        <hr />
+
+                        <!-- Reviews History -->
+                        <t
+                            t-set="reviews"
+                            t-value="env['hr.performance.review'].search([('employee_id', '=', employee.id)], order='review_date desc')"
+                        />
+
+                        <t t-if="reviews">
+                            <h4>Performance Review History</h4>
+                            <p>Total Reviews: <strong>
+                                    <t t-esc="len(reviews)" />
+                                </strong></p>
+
+                            <!-- Summary Statistics -->
+                            <t
+                                t-set="completed_reviews"
+                                t-value="reviews.filtered(lambda r: r.state == 'completed')"
+                            />
+                            <t t-if="completed_reviews">
+                                <t
+                                    t-set="scores"
+                                    t-value="[r.score for r in completed_reviews if r.score]"
+                                />
+                                <t t-if="scores">
+                                    <div class="row mt-3 mb-3">
+                                        <div class="col-4">
+                                            <div class="alert alert-info">
+                                                <strong>Average Score:</strong>
+                                                <br />
+                                                <h3>
+                                                    <t
+                                                        t-esc="'%.2f' % (sum(scores) / len(scores))"
+                                                    />
+                                                </h3>
+                                            </div>
+                                        </div>
+                                        <div class="col-4">
+                                            <div class="alert alert-success">
+                                                <strong>Highest Score:</strong>
+                                                <br />
+                                                <h3>
+                                                    <t t-esc="'%.2f' % max(scores)" />
+                                                </h3>
+                                            </div>
+                                        </div>
+                                        <div class="col-4">
+                                            <div class="alert alert-warning">
+                                                <strong>Latest Score:</strong>
+                                                <br />
+                                                <h3>
+                                                    <t
+                                                        t-esc="'%.2f' % (completed_reviews[0].score if completed_reviews[0].score else 0)"
+                                                    />
+                                                </h3>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </t>
+                            </t>
+
+                            <!-- Detailed Reviews -->
+                            <table class="table table-sm table-bordered mt-4">
+                                <thead>
+                                    <tr>
+                                        <th>Date</th>
+                                        <th>Reviewer</th>
+                                        <th>Score</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <t t-foreach="reviews" t-as="review">
+                                        <tr>
+                                            <td>
+                                                <span t-field="review.review_date" />
+                                            </td>
+                                            <td>
+                                                <span
+                                                    t-field="review.reviewer_id.name"
+                                                />
+                                            </td>
+                                            <td>
+                                                <t t-if="review.score">
+                                                    <span
+                                                        t-esc="'%.2f' % review.score"
+                                                    /> / 100 </t>
+                                                <t t-else="1">-</t>
+                                            </td>
+                                            <td>
+                                                <span
+                                                    t-if="review.state == 'completed'"
+                                                    class="badge badge-success"
+                                                >Completed</span>
+                                                <span
+                                                    t-else="1"
+                                                    class="badge badge-info"
+                                                >
+                                                    Pending</span>
+                                            </td>
+                                        </tr>
+                                    </t>
+                                </tbody>
+                            </table>
+
+                            <!-- Latest Review Details -->
+                            <t t-set="latest_review" t-value="reviews[0]" />
+                            <div class="mt-5">
+                                <h4>Latest Review Details</h4>
+                                <p>
+                                    <strong>Date:</strong>
+                                    <span t-field="latest_review.review_date" />
+                                </p>
+                                <p>
+                                    <strong>Reviewer:</strong>
+                                    <span t-field="latest_review.reviewer_id.name" />
+                                </p>
+
+                                <div class="row">
+                                    <div class="col-6" t-if="latest_review.strengths">
+                                        <h5>Strengths</h5>
+                                        <p t-field="latest_review.strengths" />
+                                    </div>
+                                    <div class="col-6" t-if="latest_review.weaknesses">
+                                        <h5>Areas for Improvement</h5>
+                                        <p t-field="latest_review.weaknesses" />
+                                    </div>
+                                </div>
+
+                                <div t-if="latest_review.comments">
+                                    <h5>Comments</h5>
+                                    <p t-field="latest_review.comments" />
+                                </div>
+
+                                <div t-if="latest_review.goals_next_period">
+                                    <h5>Goals for Next Period</h5>
+                                    <p t-field="latest_review.goals_next_period" />
+                                </div>
+                            </div>
+
+                            <!-- Review History Details (Last 5) -->
+                            <t t-if="len(reviews) > 1">
+                                <div class="mt-5 page-break">
+                                    <h4>Previous Reviews</h4>
+                                    <t t-foreach="reviews[1:6]" t-as="prev_review">
+                                        <div class="card mb-3">
+                                            <div class="card-header">
+                                                <strong>Review Date:</strong> <span
+                                                    t-field="prev_review.review_date"
+                                                /> | <strong>
+                                                Reviewer:</strong> <span
+                                                    t-field="prev_review.reviewer_id.name"
+                                                /> | <strong>
+                                                Score:</strong> <span
+                                                    t-esc="'%.2f' % prev_review.score if prev_review.score else 'N/A'"
+                                                />
+                                            </div>
+                                            <div class="card-body">
+                                                <div class="row">
+                                                    <div
+                                                        class="col-6"
+                                                        t-if="prev_review.strengths"
+                                                    >
+                                                        <strong>Strengths:</strong>
+                                                        <p
+                                                            t-field="prev_review.strengths"
+                                                        />
+                                                    </div>
+                                                    <div
+                                                        class="col-6"
+                                                        t-if="prev_review.weaknesses"
+                                                    >
+                                                        <strong
+                                                        >Areas for Improvement:</strong>
+                                                        <p
+                                                            t-field="prev_review.weaknesses"
+                                                        />
+                                                    </div>
+                                                </div>
+                                                <div
+                                                    t-if="prev_review.goals_next_period"
+                                                >
+                                                    <strong>Goals Set:</strong>
+                                                    <p
+                                                        t-field="prev_review.goals_next_period"
+                                                    />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </t>
+                                </div>
+                            </t>
+                        </t>
+                        <t t-else="1">
+                            <div class="alert alert-info">
+                                <p>No performance reviews found for this employee.</p>
+                            </div>
+                        </t>
+
+                        <div class="oe_structure" />
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>
