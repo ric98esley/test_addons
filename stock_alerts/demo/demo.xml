@@ -1,3 +1,156 @@
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
+  <!-- Demo Product Category -->
+  <record id="demo_category_electronics" model="product.category">
+    <field name="name">Electronics (Demo)</field>
+  </record>
 
+  <record id="demo_category_furniture" model="product.category">
+    <field name="name">Furniture (Demo)</field>
+  </record>
+
+  <!-- Demo Products with Stock Alerts -->
+  <record id="demo_product_laptop" model="product.template">
+    <field name="name">Laptop Computer (Demo)</field>
+    <field name="type">product</field>
+    <field name="categ_id" ref="demo_category_electronics" />
+    <field name="minimum_stock">20</field>
+    <field name="list_price">1200.00</field>
+    <field name="standard_price">800.00</field>
+  </record>
+
+  <record id="demo_product_smartphone" model="product.template">
+    <field name="name">Smartphone (Demo)</field>
+    <field name="type">product</field>
+    <field name="categ_id" ref="demo_category_electronics" />
+    <field name="minimum_stock">50</field>
+    <field name="list_price">599.00</field>
+    <field name="standard_price">350.00</field>
+  </record>
+
+  <record id="demo_product_desk" model="product.template">
+    <field name="name">Office Desk (Demo)</field>
+    <field name="type">product</field>
+    <field name="categ_id" ref="demo_category_furniture" />
+    <field name="minimum_stock">10</field>
+    <field name="list_price">450.00</field>
+    <field name="standard_price">250.00</field>
+  </record>
+
+  <record id="demo_product_chair" model="product.template">
+    <field name="name">Office Chair (Demo)</field>
+    <field name="type">product</field>
+    <field name="categ_id" ref="demo_category_furniture" />
+    <field name="minimum_stock">30</field>
+    <field name="list_price">180.00</field>
+    <field name="standard_price">100.00</field>
+  </record>
+
+  <record id="demo_product_monitor" model="product.template">
+    <field name="name">LCD Monitor (Demo)</field>
+    <field name="type">product</field>
+    <field name="categ_id" ref="demo_category_electronics" />
+    <field name="minimum_stock">25</field>
+    <field name="list_price">350.00</field>
+    <field name="standard_price">200.00</field>
+  </record>
+
+  <!-- Set initial stock levels for demo products -->
+  <!-- Note: In real scenarios, stock would be set via inventory adjustments -->
+  <!-- For demo purposes, we're showing products with various stock situations -->
+
+  <function model="stock.quant" name="create">
+    <value
+            eval="[{
+                'product_id': ref('demo_product_laptop').product_variant_ids[0].id,
+                'location_id': ref('stock.stock_location_stock'),
+                'inventory_quantity': 8,
+            }]"
+        />
+  </function>
+
+  <function model="stock.quant" name="action_apply_inventory">
+    <value eval="[ref('stock.stock_location_stock')]" />
+  </function>
+
+  <function model="stock.quant" name="create">
+    <value
+            eval="[{
+                'product_id': ref('demo_product_smartphone').product_variant_ids[0].id,
+                'location_id': ref('stock.stock_location_stock'),
+                'inventory_quantity': 75,
+            }]"
+        />
+  </function>
+
+  <function model="stock.quant" name="action_apply_inventory">
+    <value eval="[ref('stock.stock_location_stock')]" />
+  </function>
+
+  <function model="stock.quant" name="create">
+    <value
+            eval="[{
+                'product_id': ref('demo_product_desk').product_variant_ids[0].id,
+                'location_id': ref('stock.stock_location_stock'),
+                'inventory_quantity': 5,
+            }]"
+        />
+  </function>
+
+  <function model="stock.quant" name="action_apply_inventory">
+    <value eval="[ref('stock.stock_location_stock')]" />
+  </function>
+
+  <function model="stock.quant" name="create">
+    <value
+            eval="[{
+                'product_id': ref('demo_product_chair').product_variant_ids[0].id,
+                'location_id': ref('stock.stock_location_stock'),
+                'inventory_quantity': 40,
+            }]"
+        />
+  </function>
+
+  <function model="stock.quant" name="action_apply_inventory">
+    <value eval="[ref('stock.stock_location_stock')]" />
+  </function>
+
+  <function model="stock.quant" name="create">
+    <value
+            eval="[{
+                'product_id': ref('demo_product_monitor').product_variant_ids[0].id,
+                'location_id': ref('stock.stock_location_stock'),
+                'inventory_quantity': 15,
+            }]"
+        />
+  </function>
+
+  <function model="stock.quant" name="action_apply_inventory">
+    <value eval="[ref('stock.stock_location_stock')]" />
+  </function>
+
+  <!-- Demo Alert History Records -->
+  <!-- Note: These would normally be created by the automated action -->
+  <record id="demo_alert_laptop" model="stock.alert.history">
+    <field name="product_id" ref="demo_product_laptop" />
+    <field name="qty_available">8</field>
+    <field name="minimum_stock">20</field>
+    <field name="resolved" eval="False" />
+  </record>
+
+  <record id="demo_alert_desk" model="stock.alert.history">
+    <field name="product_id" ref="demo_product_desk" />
+    <field name="qty_available">5</field>
+    <field name="minimum_stock">10</field>
+    <field name="resolved" eval="False" />
+  </record>
+
+  <record id="demo_alert_monitor_resolved" model="stock.alert.history">
+    <field name="product_id" ref="demo_product_monitor" />
+    <field name="alert_date" eval="(DateTime.now() - timedelta(days=7))" />
+    <field name="qty_available">12</field>
+    <field name="minimum_stock">25</field>
+    <field name="resolved" eval="True" />
+    <field name="resolved_date" eval="(DateTime.now() - timedelta(days=2))" />
+  </record>
 </odoo>
