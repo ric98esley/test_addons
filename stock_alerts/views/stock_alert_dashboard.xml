@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <!-- Critical Stock Dashboard - Kanban View -->
+    <record id="view_product_template_kanban_stock_alerts" model="ir.ui.view">
+        <field name="name">product.template.kanban.stock.alerts</field>
+        <field name="model">product.template</field>
+        <field name="arch" type="xml">
+            <kanban class="o_kanban_mobile" sample="1">
+                <field name="id" />
+                <field name="name" />
+                <field name="qty_available" />
+                <field name="minimum_stock" />
+                <field name="categ_id" />
+                <field name="uom_id" />
+                <field name="stock_below_minimum" />
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="oe_kanban_global_click">
+                            <div class="o_kanban_record_top">
+                                <div class="o_kanban_record_headings">
+                                    <strong class="o_kanban_record_title">
+                                        <field name="name" />
+                                    </strong>
+                                    <span class="o_kanban_record_subtitle">
+                                        <field name="categ_id" />
+                                    </span>
+                                </div>
+                                <div class="o_dropdown_kanban dropdown">
+                                    <a
+                                        class="dropdown-toggle o-no-caret btn"
+                                        role="button"
+                                        data-toggle="dropdown"
+                                        href="#"
+                                        aria-label="Dropdown menu"
+                                        title="Dropdown menu"
+                                    >
+                                        <span class="fa fa-ellipsis-v" />
+                                    </a>
+                                    <div class="dropdown-menu" role="menu">
+                                        <a
+                                            role="menuitem"
+                                            type="edit"
+                                            class="dropdown-item"
+                                        >
+                                            Edit</a>
+                                        <a
+                                            role="menuitem"
+                                            type="object"
+                                            name="action_update_quantity_on_hand"
+                                            class="dropdown-item"
+                                        >Update Quantity</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="o_kanban_record_body">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <span class="text-danger">
+                                            <strong>Current Stock:</strong>
+                                        </span>
+                                        <br />
+                                        <field name="qty_available" />
+                                        <field name="uom_id" />
+                                    </div>
+                                    <div class="col-6">
+                                        <span>
+                                            <strong>Minimum:</strong>
+                                        </span>
+                                        <br />
+                                        <field name="minimum_stock" />
+                                        <field name="uom_id" />
+                                    </div>
+                                </div>
+                                <div class="row mt-2">
+                                    <div class="col-12">
+                                        <span
+                                            class="badge badge-danger"
+                                            t-if="record.stock_below_minimum.raw_value"
+                                        >⚠️
+                                            Critical Stock</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <!-- Critical Stock Dashboard - Tree View -->
+    <record id="view_product_template_tree_stock_dashboard" model="ir.ui.view">
+        <field name="name">product.template.tree.stock.dashboard</field>
+        <field name="model">product.template</field>
+        <field name="arch" type="xml">
+            <tree decoration-danger="stock_below_minimum == True" create="false">
+                <field name="name" />
+                <field name="categ_id" />
+                <field name="qty_available" />
+                <field name="minimum_stock" />
+                <field name="uom_id" />
+                <field name="stock_below_minimum" invisible="1" />
+            </tree>
+        </field>
+    </record>
+
+    <!-- Critical Stock Dashboard - Pivot View -->
+    <record id="view_product_template_pivot_stock_dashboard" model="ir.ui.view">
+        <field name="name">product.template.pivot.stock.dashboard</field>
+        <field name="model">product.template</field>
+        <field name="arch" type="xml">
+            <pivot string="Stock Analysis">
+                <field name="categ_id" type="row" />
+                <field name="qty_available" type="measure" />
+                <field name="minimum_stock" type="measure" />
+            </pivot>
+        </field>
+    </record>
+
+    <!-- Critical Stock Dashboard - Search View -->
+    <record id="view_product_template_search_stock_dashboard" model="ir.ui.view">
+        <field name="name">product.template.search.stock.dashboard</field>
+        <field name="model">product.template</field>
+        <field name="arch" type="xml">
+            <search string="Stock Alerts">
+                <field name="name" />
+                <field name="categ_id" />
+                <filter
+                    string="Critical Stock"
+                    name="critical_stock"
+                    domain="[('stock_below_minimum', '=', True)]"
+                />
+                <filter
+                    string="Has Minimum Set"
+                    name="has_minimum"
+                    domain="[('minimum_stock', '&gt;', 0)]"
+                />
+                <separator />
+                <filter
+                    string="Storable Products"
+                    name="storable"
+                    domain="[('type', '=', 'product')]"
+                />
+                <group expand="1" string="Group By">
+                    <filter
+                        string="Category"
+                        name="group_category"
+                        context="{'group_by': 'categ_id'}"
+                    />
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Stock Alerts Dashboard Action -->
+    <record id="action_stock_alerts_dashboard" model="ir.actions.act_window">
+        <field name="name">Stock Alerts Dashboard</field>
+        <field name="res_model">product.template</field>
+        <field name="view_mode">kanban,tree,pivot,form</field>
+        <field
+            name="domain"
+        >[('type', '=', 'product'), ('minimum_stock', '&gt;', 0)]</field>
+        <field name="context">{'search_default_critical_stock': 1,
+            'search_default_group_category': 1}</field>
+        <field
+            name="view_ids"
+            eval="[(5, 0, 0),
+                (0, 0, {'view_mode': 'kanban', 'view_id': ref('view_product_template_kanban_stock_alerts')}),
+                (0, 0, {'view_mode': 'tree', 'view_id': ref('view_product_template_tree_stock_dashboard')}),
+                (0, 0, {'view_mode': 'pivot', 'view_id': ref('view_product_template_pivot_stock_dashboard')}),
+            ]"
+        />
+        <field
+            name="search_view_id"
+            ref="view_product_template_search_stock_dashboard"
+        />
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                No products with minimum stock configured
+            </p>
+            <p>
+                Configure minimum stock levels on your products to monitor critical stock
+                levels.
+            </p>
+        </field>
+    </record>
+</odoo>

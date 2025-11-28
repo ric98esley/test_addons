@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <!-- Inherit Product Template Form View -->
+    <record id="view_product_template_form_stock_alerts" model="ir.ui.view">
+        <field name="name">product.template.form.stock.alerts</field>
+        <field name="model">product.template</field>
+        <field
+            name="inherit_id"
+            ref="stock.product_template_form_view_procurement_button"
+        />
+        <field name="arch" type="xml">
+            <!-- Add minimum_stock field in Inventory tab -->
+            <xpath expr="//group[@name='inventory']" position="inside">
+                <group string="Stock Alerts">
+                    <field
+                        name="minimum_stock"
+                        attrs="{'invisible': [('type', '!=', 'product')]}"
+                    />
+                    <field name="stock_below_minimum" invisible="1" />
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Tree View with Visual Indicator -->
+    <record id="view_product_template_tree_stock_alerts" model="ir.ui.view">
+        <field name="name">product.template.tree.stock.alerts</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_tree_view" />
+        <field name="arch" type="xml">
+            <xpath expr="//tree" position="attributes">
+                <attribute
+                    name="decoration-danger"
+                >stock_below_minimum == True</attribute>
+            </xpath>
+            <xpath expr="//field[@name='list_price']" position="after">
+                <field name="stock_below_minimum" invisible="1" />
+            </xpath>
+        </field>
+    </record>
+</odoo>

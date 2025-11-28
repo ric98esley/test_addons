@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <!-- Stock Alert History Tree View -->
+    <record id="view_stock_alert_history_tree" model="ir.ui.view">
+        <field name="name">stock.alert.history.tree</field>
+        <field name="model">stock.alert.history</field>
+        <field name="arch" type="xml">
+            <tree
+                decoration-success="resolved == True"
+                decoration-warning="resolved == False"
+            >
+                <field name="alert_date" />
+                <field name="product_id" />
+                <field name="category_id" />
+                <field name="qty_available" />
+                <field name="minimum_stock" />
+                <field name="resolved" />
+                <field name="resolved_date" />
+            </tree>
+        </field>
+    </record>
+
+    <!-- Stock Alert History Form View -->
+    <record id="view_stock_alert_history_form" model="ir.ui.view">
+        <field name="name">stock.alert.history.form</field>
+        <field name="model">stock.alert.history</field>
+        <field name="arch" type="xml">
+            <form string="Stock Alert" create="false" edit="false">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="product_id" />
+                            <field name="category_id" />
+                            <field name="alert_date" />
+                        </group>
+                        <group>
+                            <field name="qty_available" />
+                            <field name="minimum_stock" />
+                            <field name="resolved" />
+                            <field
+                                name="resolved_date"
+                                attrs="{'invisible': [('resolved', '=', False)]}"
+                            />
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Stock Alert History Search View -->
+    <record id="view_stock_alert_history_search" model="ir.ui.view">
+        <field name="name">stock.alert.history.search</field>
+        <field name="model">stock.alert.history</field>
+        <field name="arch" type="xml">
+            <search string="Stock Alerts">
+                <field name="product_id" />
+                <field name="category_id" />
+                <filter
+                    string="Active Alerts"
+                    name="active_alerts"
+                    domain="[('resolved', '=', False)]"
+                />
+                <filter
+                    string="Resolved Alerts"
+                    name="resolved_alerts"
+                    domain="[('resolved', '=', True)]"
+                />
+                <separator />
+                <filter
+                    string="This Month"
+                    name="this_month"
+                    domain="[('alert_date', '&gt;=', (context_today() - relativedelta(months=1)).strftime('%Y-%m-01'))]"
+                />
+                <filter
+                    string="This Week"
+                    name="this_week"
+                    domain="[('alert_date', '&gt;=', (context_today() - relativedelta(weeks=1)).strftime('%Y-%m-%d'))]"
+                />
+                <group expand="0" string="Group By">
+                    <filter
+                        string="Product"
+                        name="group_product"
+                        context="{'group_by': 'product_id'}"
+                    />
+                    <filter
+                        string="Category"
+                        name="group_category"
+                        context="{'group_by': 'category_id'}"
+                    />
+                    <filter
+                        string="Status"
+                        name="group_status"
+                        context="{'group_by': 'resolved'}"
+                    />
+                    <filter
+                        string="Alert Date"
+                        name="group_alert_date"
+                        context="{'group_by': 'alert_date'}"
+                    />
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Stock Alert History Action -->
+    <record id="action_stock_alert_history" model="ir.actions.act_window">
+        <field name="name">Alert History</field>
+        <field name="res_model">stock.alert.history</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{'search_default_active_alerts': 1}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                No stock alerts yet!
+            </p>
+            <p>
+                Stock alerts are automatically generated when product stock falls below the
+                minimum threshold.
+            </p>
+        </field>
+    </record>
+</odoo>

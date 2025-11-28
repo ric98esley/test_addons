@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <!-- Main Menu Item -->
+    <menuitem
+        id="menu_stock_alerts_root"
+        name="Stock Alerts"
+        parent="stock.menu_stock_root"
+        sequence="50"
+    />
+
+    <!-- Stock Alerts Dashboard Menu -->
+    <menuitem
+        id="menu_stock_alerts_dashboard"
+        name="Critical Stock Dashboard"
+        parent="menu_stock_alerts_root"
+        action="action_stock_alerts_dashboard"
+        sequence="10"
+    />
+
+    <!-- Alert History Menu -->
+    <menuitem
+        id="menu_stock_alert_history"
+        name="Alert History"
+        parent="menu_stock_alerts_root"
+        action="action_stock_alert_history"
+        sequence="20"
+    />
+</odoo>
