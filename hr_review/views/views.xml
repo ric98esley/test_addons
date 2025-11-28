@@ -116,7 +116,7 @@
                     </strong>
                   </div>
                   <div class="o_secondary">
-                    <i class="fa fa-calendar" />
+                    <i class="fa fa-calendar" title="Review Date" />
                     <field name="review_date" />
                   </div>
                 </div>
@@ -124,14 +124,18 @@
               <div class="o_kanban_card_content">
                 <div class="o_kanban_card_body">
                   <div>
-                    <i class="fa fa-user" /> Reviewer: <field name="reviewer_id" />
+                    <i class="fa fa-user" title="Reviewer" /> Reviewer: <field
+                                            name="reviewer_id"
+                                        />
                   </div>
                   <div t-if="record.employee_department_id.raw_value">
-                    <i class="fa fa-building" />
+                    <i class="fa fa-building" title="Department" />
                     <field name="employee_department_id" />
                   </div>
                   <div t-if="record.score.raw_value">
-                    <i class="fa fa-star" /> Score: <field name="score" /> / 100 </div>
+                    <i class="fa fa-star" title="Score" /> Score: <field
+                                            name="score"
+                                        /> / 100 </div>
                 </div>
               </div>
             </div>
