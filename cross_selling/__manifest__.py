@@ -9,9 +9,9 @@
     "depends": ["base", "sale"],
     "data": [
         "security/ir.model.access.csv",
+        "wizard/cross_selling_wizard_view.xml",
         "views/cross_selling_view.xml",
         "views/sale_order_view.xml",
-        "wizard/cross_selling_wizard_view.xml",
     ],
     "demo": [
         "demo/demo.xml",
