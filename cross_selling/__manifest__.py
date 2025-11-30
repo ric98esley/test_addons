@@ -8,7 +8,10 @@
     "version": "16.0.0.0.1",
     "depends": ["base", "sale"],
     "data": [
-        # 'security/ir.model.access.csv',
+        "security/ir.model.access.csv",
+        "views/cross_selling_view.xml",
+        "views/sale_order_view.xml",
+        "wizard/cross_selling_wizard_view.xml",
     ],
     "demo": [
         "demo/demo.xml",

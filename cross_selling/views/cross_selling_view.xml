@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_product_cross_sell_tree" model="ir.ui.view">
+        <field name="name">product.cross.sell.tree</field>
+        <field name="model">product.cross.sell</field>
+        <field name="arch" type="xml">
+            <tree editable="bottom">
+                <field name="sequence" widget="handle" />
+                <field name="product_id" />
+                <field name="suggested_product_id" />
+                <field name="comment" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_product_cross_sell_form" model="ir.ui.view">
+        <field name="name">product.cross.sell.form</field>
+        <field name="model">product.cross.sell</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="product_id" />
+                            <field name="suggested_product_id" />
+                        </group>
+                        <group>
+                            <field name="sequence" />
+                        </group>
+                    </group>
+                    <field name="comment" placeholder="Internal notes..." />
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_product_cross_sell" model="ir.actions.act_window">
+        <field name="name">Cross Selling Rules</field>
+        <field name="res_model">product.cross.sell</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create a new cross selling rule
+            </p>
+        </field>
+    </record>
+
+    <menuitem
+        id="menu_product_cross_sell"
+        name="Cross Selling"
+        parent="sale.menu_sale_config"
+        action="action_product_cross_sell"
+        sequence="100"
+    />
+</odoo>
