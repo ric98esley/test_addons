@@ -1,0 +1,19 @@
+{
+    "name": "Pos loyalty Plus",
+    "summary": """
+        Add loyalty points views and extra logic
+    """,
+    "author": "Ricardo Perez",
+    "website": "https://github.com/ric98esley/test_addons",
+    "category": "Point of Sale",
+    "version": "16.0.0.0.1",
+    "depends": ["point_of_sale", "pos_loyalty"],
+    "data": [
+        # 'security/ir.model.access.csv',
+    ],
+    "demo": [
+        "demo/demo.xml",
+    ],
+    "license": "LGPL-3",
+    "auto_install": True,
+}
