@@ -81,9 +81,6 @@ class TestStockAlerts(TransactionCase):
     def test_compute_stock_below_minimum(self):
         """Test the computed field stock_below_minimum"""
         # Refresh products to get updated computed fields
-        self.product_critical.invalidate_cache()
-        self.product_ok.invalidate_cache()
-        self.product_no_minimum.invalidate_cache()
 
         # Product with stock below minimum should be flagged
         self.assertTrue(
@@ -223,9 +220,6 @@ class TestStockAlerts(TransactionCase):
 
         # Run alert check again
         self.product_model.check_and_create_alerts()
-
-        # Refresh alert
-        alert.invalidate_cache()
 
         # Check that alert is now resolved
         self.assertTrue(
