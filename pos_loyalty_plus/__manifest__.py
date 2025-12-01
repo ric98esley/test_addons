@@ -10,6 +10,10 @@
     "depends": ["point_of_sale", "pos_loyalty"],
     "data": [
         # 'security/ir.model.access.csv',
+        "views/res_partner_views.xml",
+        "views/pos_config_views.xml",
+        "views/pos_session_views.xml",
+        "report/loyalty_report.xml",
     ],
     "demo": [
         "demo/demo.xml",
