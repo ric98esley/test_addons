@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_pos_session_form_loyalty" model="ir.ui.view">
+        <field name="name">pos.session.form.loyalty</field>
+        <field name="model">pos.session</field>
+        <field name="inherit_id" ref="point_of_sale.view_pos_session_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='total_payments_amount']" position="after">
+                <field name="total_loyalty_points" widget="monetary" />
+            </xpath>
+        </field>
+    </record>
+</odoo>
