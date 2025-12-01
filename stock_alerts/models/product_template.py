@@ -52,13 +52,13 @@ class ProductTemplate(models.Model):
         Returns products with stock below minimum threshold
         Used by the dashboard and automated alert system
         """
-        return self.search(
+        products = self.search(
             [
                 ("type", "=", "product"),
                 ("minimum_stock", ">", 0),
-                ("qty_available", "<", "minimum_stock"),
             ]
         )
+        return products.filtered(lambda p: p.qty_available < p.minimum_stock)
 
     def check_and_create_alerts(self):
         """
