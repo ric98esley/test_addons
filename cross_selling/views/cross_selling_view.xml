@@ -5,10 +5,8 @@
         <field name="model">product.cross.sell</field>
         <field name="arch" type="xml">
             <tree editable="bottom">
-                <field name="sequence" widget="handle" />
-                <field name="product_id" />
-                <field name="suggested_product_id" />
-                <field name="comment" />
+                <field name="src_id" string="Main Product" />
+                <field name="dest_id" string="Optional Product" />
             </tree>
         </field>
     </record>
@@ -21,14 +19,10 @@
                 <sheet>
                     <group>
                         <group>
-                            <field name="product_id" />
-                            <field name="suggested_product_id" />
-                        </group>
-                        <group>
-                            <field name="sequence" />
+                            <field name="src_id" string="Main Product" />
+                            <field name="dest_id" string="Optional Product" />
                         </group>
                     </group>
-                    <field name="comment" placeholder="Internal notes..." />
                 </sheet>
             </form>
         </field>

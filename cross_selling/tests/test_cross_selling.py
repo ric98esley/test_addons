@@ -10,61 +10,35 @@ class TestCrossSelling(TransactionCase):
         self.product_b = self.env["product.product"].create({"name": "Product B"})
         self.partner = self.env["res.partner"].create({"name": "Test Partner"})
 
-        # Create Cross Selling Rule: A -> B
+    def test_cross_selling_relation(self):
+        """Test that creating a product.cross.sell record updates the optional_product_ids"""
+        # Create Cross Selling Rule: A -> B using the new model
         self.env["product.cross.sell"].create(
             {
-                "product_id": self.product_a.id,
-                "suggested_product_id": self.product_b.id,
-                "sequence": 10,
+                "src_id": self.product_a.product_tmpl_id.id,
+                "dest_id": self.product_b.product_tmpl_id.id,
             }
         )
 
-    def test_cross_selling_wizard(self):
-
-        order = self.env["sale.order"].create(
-            {
-                "partner_id": self.partner.id,
-                "order_line": [
-                    (
-                        0,
-                        0,
-                        {
-                            "product_id": self.product_a.id,
-                            "product_uom_qty": 1,
-                        },
-                    )
-                ],
-            }
+        # Verify that Product B is now an optional product of Product A
+        self.assertIn(
+            self.product_b.product_tmpl_id,
+            self.product_a.product_tmpl_id.optional_product_ids,
+            "Product B should be in optional_product_ids of Product A",
         )
 
-        wizard = (
-            self.env["cross.selling.wizard"]
-            .with_context(active_id=order.id)
-            .create({"sale_order_id": order.id})
+    def test_cross_selling_reverse(self):
+        """Test that adding to optional_product_ids creates a product.cross.sell record"""
+        # Add Product A as optional to Product B
+        self.product_b.product_tmpl_id.optional_product_ids = [
+            (4, self.product_a.product_tmpl_id.id)
+        ]
+
+        # Check if the relation record exists
+        relation = self.env["product.cross.sell"].search(
+            [
+                ("src_id", "=", self.product_b.product_tmpl_id.id),
+                ("dest_id", "=", self.product_a.product_tmpl_id.id),
+            ]
         )
-
-        defaults = (
-            self.env["cross.selling.wizard"]
-            .with_context(active_id=order.id)
-            .default_get(["sale_order_id", "line_ids"])
-        )
-
-        self.assertTrue(defaults.get("line_ids"), "Wizard should have suggestions")
-        self.assertEqual(len(defaults["line_ids"]), 1, "Should have 1 suggestion")
-
-        suggestion_data = defaults["line_ids"][0][2]  # (0, 0, {data})
-        self.assertEqual(
-            suggestion_data["product_id"],
-            self.product_b.id,
-            "Suggestion should be Product B",
-        )
-
-        wizard = self.env["cross.selling.wizard"].create(defaults)
-
-        wizard.action_add_suggestions()
-
-        self.assertTrue(
-            self.product_b in order.order_line.mapped("product_id"),
-            "Product B should be added to the order",
-        )
-        self.assertEqual(len(order.order_line), 2, "Order should have 2 lines")
+        self.assertTrue(relation, "Relation record should exist")

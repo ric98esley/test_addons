@@ -6,12 +6,10 @@
     "website": "https://github.com/ric98esley/test_addons",
     "category": "Sales",
     "version": "16.0.0.0.1",
-    "depends": ["base", "sale"],
+    "depends": ["sale", "sale_product_configurator"],
     "data": [
         "security/ir.model.access.csv",
-        "wizard/cross_selling_wizard_view.xml",
         "views/cross_selling_view.xml",
-        "views/sale_order_view.xml",
     ],
     "demo": [
         "demo/demo.xml",
