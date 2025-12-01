@@ -1,8 +1,10 @@
 from psycopg2.errors import CheckViolation
 
+from odoo.tests import tagged
 from odoo.tests.common import TransactionCase
 
 
+@tagged("post_install", "hr_review")
 class TestHrPerformanceReview(TransactionCase):
     def setUp(self):
         super(TestHrPerformanceReview, self).setUp()
