@@ -217,6 +217,6 @@ class TestPosLoyaltyPlus(TransactionCase):
         # So let's try _render_qweb_html first as a sanity check for the template.
         html = report._render_qweb_html(report.id, self.partner.ids)
         self.assertTrue(html, "Report HTML should be generated")
-        self.assertIn(b"Order Report Test", html[0], "Report should contain order name")
+        self.assertIn(order.name.encode(), html[0], "Report should contain order name")
         self.assertIn(b"50.0", html[0], "Report should contain points")
         self.assertIn(b"50.0", html[0], "Report should contain points")
