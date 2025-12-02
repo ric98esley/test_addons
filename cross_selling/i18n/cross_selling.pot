@@ -1,0 +1,95 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* cross_selling
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-12-02 15:54+0000\n"
+"PO-Revision-Date: 2025-12-02 15:54+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: cross_selling
+#: model_terms:ir.actions.act_window,help:cross_selling.action_product_cross_sell
+msgid "Create a new cross selling rule"
+msgstr ""
+
+#. module: cross_selling
+#: model:ir.model.fields,field_description:cross_selling.field_product_cross_sell__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: cross_selling
+#: model:ir.model.fields,field_description:cross_selling.field_product_cross_sell__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: cross_selling
+#: model:ir.ui.menu,name:cross_selling.menu_product_cross_sell
+msgid "Cross Selling"
+msgstr ""
+
+#. module: cross_selling
+#: model:ir.model,name:cross_selling.model_product_cross_sell
+msgid "Cross Selling Product Relation"
+msgstr ""
+
+#. module: cross_selling
+#: model:ir.actions.act_window,name:cross_selling.action_product_cross_sell
+msgid "Cross Selling Rules"
+msgstr ""
+
+#. module: cross_selling
+#: model:ir.model.fields,field_description:cross_selling.field_product_cross_sell__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: cross_selling
+#: model:ir.model.fields,field_description:cross_selling.field_product_cross_sell__id
+msgid "ID"
+msgstr ""
+
+#. module: cross_selling
+#: model:ir.model.fields,field_description:cross_selling.field_product_cross_sell____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: cross_selling
+#: model:ir.model.fields,field_description:cross_selling.field_product_cross_sell__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: cross_selling
+#: model:ir.model.fields,field_description:cross_selling.field_product_cross_sell__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: cross_selling
+#: model:ir.model.fields,field_description:cross_selling.field_product_cross_sell__src_id
+#: model_terms:ir.ui.view,arch_db:cross_selling.view_product_cross_sell_form
+#: model_terms:ir.ui.view,arch_db:cross_selling.view_product_cross_sell_tree
+msgid "Main Product"
+msgstr ""
+
+#. module: cross_selling
+#: model:ir.model.fields,field_description:cross_selling.field_product_cross_sell__dest_id
+#: model_terms:ir.ui.view,arch_db:cross_selling.view_product_cross_sell_form
+#: model_terms:ir.ui.view,arch_db:cross_selling.view_product_cross_sell_tree
+msgid "Optional Product"
+msgstr ""
+
+#. module: cross_selling
+#: model:ir.model,name:cross_selling.model_product_template
+msgid "Product"
+msgstr ""
+
+#. module: cross_selling
+#: model:ir.model.constraint,message:cross_selling.constraint_product_cross_sell_unique_product_relation
+msgid "This cross-selling relation already exists!"
+msgstr ""

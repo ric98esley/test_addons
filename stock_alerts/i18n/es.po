@@ -1,0 +1,309 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* stock_alerts
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-12-02 16:08+0000\n"
+"PO-Revision-Date: 2025-12-02 16:09+0000\n"
+"Last-Translator: \n"
+"Language-Team: Spanish\n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: stock_alerts
+#: model_terms:ir.ui.view,arch_db:stock_alerts.view_product_template_kanban_stock_alerts
+msgid ""
+"<span class=\"text-danger\">\n"
+"                                            <strong>Current Stock:</strong>\n"
+"                                        </span>\n"
+"                                        <br/>"
+msgstr ""
+"<span class=\"text-danger\">\n"
+"                                            <strong>Stock Actual:</strong>\n"
+"                                        </span>\n"
+"                                        <br/>"
+
+#. module: stock_alerts
+#: model_terms:ir.ui.view,arch_db:stock_alerts.view_product_template_kanban_stock_alerts
+msgid ""
+"<span>\n"
+"                                            <strong>Minimum:</strong>\n"
+"                                        </span>\n"
+"                                        <br/>"
+msgstr ""
+"<span>\n"
+"                                            <strong>Mínimo:</strong>\n"
+"                                        </span>\n"
+"                                        <br/>"
+
+#. module: stock_alerts
+#: model_terms:ir.ui.view,arch_db:stock_alerts.view_stock_alert_history_search
+msgid "Active Alerts"
+msgstr "Alertas Activas"
+
+#. module: stock_alerts
+#: model:ir.model.fields,field_description:stock_alerts.field_stock_alert_history__alert_date
+#: model_terms:ir.ui.view,arch_db:stock_alerts.view_stock_alert_history_search
+msgid "Alert Date"
+msgstr "Fecha de Alerta"
+
+#. module: stock_alerts
+#: model:ir.actions.act_window,name:stock_alerts.action_stock_alert_history
+#: model:ir.ui.menu,name:stock_alerts.menu_stock_alert_history
+msgid "Alert History"
+msgstr "Historial de Alertas"
+
+#. module: stock_alerts
+#: model:ir.model.fields,help:stock_alerts.field_stock_alert_history__resolved
+msgid "Alert is resolved when stock returns above minimum threshold"
+msgstr "La alerta se resuelve cuando el stock vuelve por encima del umbral mínimo"
+
+#. module: stock_alerts
+#: model_terms:ir.ui.view,arch_db:stock_alerts.view_product_template_search_stock_dashboard
+#: model_terms:ir.ui.view,arch_db:stock_alerts.view_stock_alert_history_search
+msgid "Category"
+msgstr "Categoría"
+
+#. module: stock_alerts
+#: model_terms:ir.actions.act_window,help:stock_alerts.action_stock_alerts_dashboard
+msgid ""
+"Configure minimum stock levels on your products to monitor critical stock\n"
+"                levels."
+msgstr ""
+"Configure niveles mínimos de stock en sus productos para monitorear niveles\n"
+"                críticos de stock."
+
+#. module: stock_alerts
+#: model:ir.model.fields,field_description:stock_alerts.field_stock_alert_history__create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: stock_alerts
+#: model:ir.model.fields,field_description:stock_alerts.field_stock_alert_history__create_date
+msgid "Created on"
+msgstr "Creado el"
+
+#. module: stock_alerts
+#: model_terms:ir.ui.view,arch_db:stock_alerts.view_product_template_search_stock_dashboard
+msgid "Critical Stock"
+msgstr "Stock Crítico"
+
+#. module: stock_alerts
+#: model:ir.ui.menu,name:stock_alerts.menu_stock_alerts_dashboard
+msgid "Critical Stock Dashboard"
+msgstr "Panel de Stock Crítico"
+
+#. module: stock_alerts
+#: model:ir.model.fields,help:stock_alerts.field_stock_alert_history__resolved_date
+msgid "Date when stock was replenished above minimum"
+msgstr "Fecha en que el stock fue repuesto por encima del mínimo"
+
+#. module: stock_alerts
+#: model:ir.model.fields,field_description:stock_alerts.field_stock_alert_history__display_name
+msgid "Display Name"
+msgstr "Nombre a Mostrar"
+
+#. module: stock_alerts
+#: model_terms:ir.ui.view,arch_db:stock_alerts.view_product_template_kanban_stock_alerts
+msgid "Dropdown menu"
+msgstr "Menú desplegable"
+
+#. module: stock_alerts
+#: model_terms:ir.ui.view,arch_db:stock_alerts.view_product_template_kanban_stock_alerts
+msgid "Edit"
+msgstr "Editar"
+
+#. module: stock_alerts
+#: model_terms:ir.ui.view,arch_db:stock_alerts.view_product_template_search_stock_dashboard
+#: model_terms:ir.ui.view,arch_db:stock_alerts.view_stock_alert_history_search
+msgid "Group By"
+msgstr "Agrupar por"
+
+#. module: stock_alerts
+#: model_terms:ir.ui.view,arch_db:stock_alerts.view_product_template_search_stock_dashboard
+msgid "Has Minimum Set"
+msgstr "Tiene Mínimo Configurado"
+
+#. module: stock_alerts
+#: model:ir.model.fields,field_description:stock_alerts.field_stock_alert_history__id
+msgid "ID"
+msgstr "ID"
+
+#. module: stock_alerts
+#: model:ir.model.fields,help:stock_alerts.field_product_product__stock_below_minimum
+#: model:ir.model.fields,help:stock_alerts.field_product_template__stock_below_minimum
+msgid "Indicates if current stock is below the minimum threshold"
+msgstr "Indica si el stock actual está por debajo del umbral mínimo"
+
+#. module: stock_alerts
+#: model:ir.model.fields,field_description:stock_alerts.field_stock_alert_history____last_update
+msgid "Last Modified on"
+msgstr "Última Modificación el"
+
+#. module: stock_alerts
+#: model:ir.model.fields,field_description:stock_alerts.field_stock_alert_history__write_uid
+msgid "Last Updated by"
+msgstr "Última Actualización por"
+
+#. module: stock_alerts
+#: model:ir.model.fields,field_description:stock_alerts.field_stock_alert_history__write_date
+msgid "Last Updated on"
+msgstr "Última Actualización el"
+
+#. module: stock_alerts
+#: model:ir.model.fields,field_description:stock_alerts.field_product_product__minimum_stock
+#: model:ir.model.fields,field_description:stock_alerts.field_product_template__minimum_stock
+#: model:ir.model.fields,field_description:stock_alerts.field_stock_alert_history__minimum_stock
+msgid "Minimum Stock"
+msgstr "Stock Mínimo"
+
+#. module: stock_alerts
+#: model:ir.model.fields,help:stock_alerts.field_stock_alert_history__minimum_stock
+msgid "Minimum stock level configured at time of alert"
+msgstr "Nivel de stock mínimo configurado al momento de la alerta"
+
+#. module: stock_alerts
+#: model:ir.model.fields,help:stock_alerts.field_product_product__minimum_stock
+#: model:ir.model.fields,help:stock_alerts.field_product_template__minimum_stock
+msgid ""
+"Minimum stock level. An alert will be generated when available quantity "
+"falls below this threshold."
+msgstr ""
+"Nivel de stock mínimo. Se generará una alerta cuando la cantidad disponible "
+"caiga por debajo de este umbral."
+
+#. module: stock_alerts
+#: model_terms:ir.actions.act_window,help:stock_alerts.action_stock_alerts_dashboard
+msgid "No products with minimum stock configured"
+msgstr "No hay productos con stock mínimo configurado"
+
+#. module: stock_alerts
+#: model_terms:ir.actions.act_window,help:stock_alerts.action_stock_alert_history
+msgid "No stock alerts yet!"
+msgstr "¡Aún no hay alertas de stock!"
+
+#. module: stock_alerts
+#: model:ir.model,name:stock_alerts.model_product_template
+#: model:ir.model.fields,field_description:stock_alerts.field_stock_alert_history__product_id
+#: model_terms:ir.ui.view,arch_db:stock_alerts.view_stock_alert_history_search
+msgid "Product"
+msgstr "Producto"
+
+#. module: stock_alerts
+#: model:ir.model.fields,field_description:stock_alerts.field_stock_alert_history__category_id
+msgid "Product Category"
+msgstr "Categoría de Producto"
+
+#. module: stock_alerts
+#: model:ir.model.fields,field_description:stock_alerts.field_stock_alert_history__qty_available
+msgid "Qty Available"
+msgstr "Cantidad Disponible"
+
+#. module: stock_alerts
+#: model:ir.model.fields,help:stock_alerts.field_stock_alert_history__qty_available
+msgid "Quantity available when the alert was generated"
+msgstr "Cantidad disponible cuando se generó la alerta"
+
+#. module: stock_alerts
+#: model:ir.model.fields,field_description:stock_alerts.field_stock_alert_history__resolved
+msgid "Resolved"
+msgstr "Resuelto"
+
+#. module: stock_alerts
+#: model_terms:ir.ui.view,arch_db:stock_alerts.view_stock_alert_history_search
+msgid "Resolved Alerts"
+msgstr "Alertas Resueltas"
+
+#. module: stock_alerts
+#: model:ir.model.fields,field_description:stock_alerts.field_stock_alert_history__resolved_date
+msgid "Resolved Date"
+msgstr "Fecha de Resolución"
+
+#. module: stock_alerts
+#: model_terms:ir.ui.view,arch_db:stock_alerts.view_stock_alert_history_search
+msgid "Status"
+msgstr "Estado"
+
+#. module: stock_alerts
+#: model_terms:ir.ui.view,arch_db:stock_alerts.view_stock_alert_history_form
+msgid "Stock Alert"
+msgstr "Alerta de Stock"
+
+#. module: stock_alerts
+#: model:ir.model,name:stock_alerts.model_stock_alert_history
+msgid "Stock Alert History"
+msgstr "Historial de Alertas de Stock"
+
+#. module: stock_alerts
+#: model:ir.ui.menu,name:stock_alerts.menu_stock_alerts_root
+#: model_terms:ir.ui.view,arch_db:stock_alerts.view_product_template_form_stock_alerts
+#: model_terms:ir.ui.view,arch_db:stock_alerts.view_product_template_search_stock_dashboard
+#: model_terms:ir.ui.view,arch_db:stock_alerts.view_stock_alert_history_search
+msgid "Stock Alerts"
+msgstr "Alertas de Stock"
+
+#. module: stock_alerts
+#: model:ir.actions.act_window,name:stock_alerts.action_stock_alerts_dashboard
+msgid "Stock Alerts Dashboard"
+msgstr "Panel de Alertas de Stock"
+
+#. module: stock_alerts
+#: model:ir.actions.server,name:stock_alerts.ir_cron_check_stock_alerts_ir_actions_server
+msgid "Stock Alerts: Check Critical Stock Levels"
+msgstr "Alertas de Stock: Verificar Niveles Críticos de Stock"
+
+#. module: stock_alerts
+#: model_terms:ir.ui.view,arch_db:stock_alerts.view_product_template_pivot_stock_dashboard
+msgid "Stock Analysis"
+msgstr "Análisis de Stock"
+
+#. module: stock_alerts
+#: model:ir.model.fields,field_description:stock_alerts.field_product_product__stock_below_minimum
+#: model:ir.model.fields,field_description:stock_alerts.field_product_template__stock_below_minimum
+msgid "Stock Below Minimum"
+msgstr "Stock por Debajo del Mínimo"
+
+#. module: stock_alerts
+#: model_terms:ir.actions.act_window,help:stock_alerts.action_stock_alert_history
+msgid ""
+"Stock alerts are automatically generated when product stock falls below the\n"
+"                minimum threshold."
+msgstr ""
+"Las alertas de stock se generan automáticamente cuando el stock del producto "
+"cae por debajo del\n"
+"                umbral mínimo."
+
+#. module: stock_alerts
+#: model_terms:ir.ui.view,arch_db:stock_alerts.view_product_template_search_stock_dashboard
+msgid "Storable Products"
+msgstr "Productos Almacenables"
+
+#. module: stock_alerts
+#: model_terms:ir.ui.view,arch_db:stock_alerts.view_stock_alert_history_search
+msgid "This Month"
+msgstr "Este Mes"
+
+#. module: stock_alerts
+#: model_terms:ir.ui.view,arch_db:stock_alerts.view_stock_alert_history_search
+msgid "This Week"
+msgstr "Esta Semana"
+
+#. module: stock_alerts
+#: model_terms:ir.ui.view,arch_db:stock_alerts.view_product_template_kanban_stock_alerts
+msgid "Update Quantity"
+msgstr "Actualizar Cantidad"
+
+#. module: stock_alerts
+#: model_terms:ir.ui.view,arch_db:stock_alerts.view_product_template_kanban_stock_alerts
+msgid ""
+"⚠️\n"
+"                                            Critical Stock"
+msgstr ""
+"⚠️\n"
+"                                            Stock Crítico"

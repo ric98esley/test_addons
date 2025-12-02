@@ -1,0 +1,100 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* account_discount
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-12-02 15:51+0000\n"
+"PO-Revision-Date: 2025-12-02 15:51+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: account_discount
+#: model:ir.model,name:account_discount.model_res_partner
+msgid "Contact"
+msgstr "Contacto"
+
+#. module: account_discount
+#: model_terms:ir.actions.act_window,help:account_discount.action_res_partner_type
+msgid "Create a new partner type"
+msgstr "Crear un nuevo tipo de contacto"
+
+#. module: account_discount
+#: model:ir.model.fields,field_description:account_discount.field_res_partner_type__create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: account_discount
+#: model:ir.model.fields,field_description:account_discount.field_res_partner_type__create_date
+msgid "Created on"
+msgstr "Creado el"
+
+#. module: account_discount
+#: model:ir.model.fields,field_description:account_discount.field_account_move_line__discount
+msgid "Discount (%)"
+msgstr "Descuento (%)"
+
+#. module: account_discount
+#: model:ir.model.fields,field_description:account_discount.field_res_partner_type__display_name
+msgid "Display Name"
+msgstr "Nombre a mostrar"
+
+#. module: account_discount
+#: model:ir.model.fields,field_description:account_discount.field_res_partner_type__id
+msgid "ID"
+msgstr "ID"
+
+#. module: account_discount
+#: model:ir.model,name:account_discount.model_account_move_line
+msgid "Journal Item"
+msgstr "Apunte contable"
+
+#. module: account_discount
+#: model:ir.model.fields,field_description:account_discount.field_res_partner_type____last_update
+msgid "Last Modified on"
+msgstr "Última modificación el"
+
+#. module: account_discount
+#: model:ir.model.fields,field_description:account_discount.field_res_partner_type__write_uid
+msgid "Last Updated by"
+msgstr "Última actualización por"
+
+#. module: account_discount
+#: model:ir.model.fields,field_description:account_discount.field_res_partner_type__write_date
+msgid "Last Updated on"
+msgstr "Última actualización el"
+
+#. module: account_discount
+#: model:ir.model.fields,field_description:account_discount.field_res_partner_type__name
+msgid "Nombre"
+msgstr "Nombre"
+
+#. module: account_discount
+#: model:ir.model.fields,field_description:account_discount.field_account_move_line__partner_id
+msgid "Partner"
+msgstr "Empresa"
+
+#. module: account_discount
+#: model:ir.actions.act_window,name:account_discount.action_res_partner_type
+#: model:ir.model.fields,field_description:account_discount.field_account_move_line__partner_type_id
+#: model:ir.model.fields,field_description:account_discount.field_res_partner__partner_type_id
+#: model:ir.model.fields,field_description:account_discount.field_res_users__partner_type_id
+#: model:ir.ui.menu,name:account_discount.menu_res_partner_type
+msgid "Partner Type"
+msgstr "Tipo de contacto"
+
+#. module: account_discount
+#: model:ir.model.fields,field_description:account_discount.field_res_partner_type__percentage
+msgid "Porcentaje"
+msgstr "Porcentaje"
+
+#. module: account_discount
+#: model:ir.model,name:account_discount.model_res_partner_type
+msgid "res.partner.type"
+msgstr "res.partner.type"

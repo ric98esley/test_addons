@@ -1,0 +1,269 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* pos_loyalty_plus
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-12-02 16:04+0000\n"
+"PO-Revision-Date: 2025-12-02 16:04+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: pos_loyalty_plus
+#: model_terms:ir.ui.view,arch_db:pos_loyalty_plus.report_loyalty_period
+msgid "<strong> To:</strong>"
+msgstr ""
+
+#. module: pos_loyalty_plus
+#: model_terms:ir.ui.view,arch_db:pos_loyalty_plus.report_loyalty_history
+msgid "<strong>Current Balance:</strong>"
+msgstr ""
+
+#. module: pos_loyalty_plus
+#: model_terms:ir.ui.view,arch_db:pos_loyalty_plus.report_loyalty_period
+msgid "<strong>From:</strong>"
+msgstr ""
+
+#. module: pos_loyalty_plus
+#: model_terms:ir.ui.view,arch_db:pos_loyalty_plus.report_loyalty_period
+msgid "<strong>Period Total: </strong>"
+msgstr ""
+
+#. module: pos_loyalty_plus
+#: model_terms:ir.ui.view,arch_db:pos_loyalty_plus.view_pos_session_kanban_loyalty
+msgid "<strong>Points: </strong>"
+msgstr ""
+
+#. module: pos_loyalty_plus
+#: model_terms:ir.ui.view,arch_db:pos_loyalty_plus.report_loyalty_history
+msgid "Accumulation History"
+msgstr ""
+
+#. module: pos_loyalty_plus
+#: model_terms:ir.ui.view,arch_db:pos_loyalty_plus.pos_config_view_form_loyalty
+msgid "Associated Loyalty Program"
+msgstr ""
+
+#. module: pos_loyalty_plus
+#: model_terms:ir.ui.view,arch_db:pos_loyalty_plus.view_pos_loyalty_report_wizard_form
+msgid "Cancel"
+msgstr ""
+
+#. module: pos_loyalty_plus
+#: model:ir.model,name:pos_loyalty_plus.model_res_partner
+msgid "Contact"
+msgstr ""
+
+#. module: pos_loyalty_plus
+#: model:ir.model.fields,field_description:pos_loyalty_plus.field_pos_loyalty_report_wizard__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: pos_loyalty_plus
+#: model:ir.model.fields,field_description:pos_loyalty_plus.field_pos_loyalty_report_wizard__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: pos_loyalty_plus
+#: model_terms:ir.ui.view,arch_db:pos_loyalty_plus.report_loyalty_period
+msgid "Current Global Balance:"
+msgstr ""
+
+#. module: pos_loyalty_plus
+#: model_terms:ir.ui.view,arch_db:pos_loyalty_plus.report_loyalty_history
+#: model_terms:ir.ui.view,arch_db:pos_loyalty_plus.report_loyalty_period
+msgid "Date"
+msgstr ""
+
+#. module: pos_loyalty_plus
+#: model:ir.model.fields,field_description:pos_loyalty_plus.field_pos_loyalty_report_wizard__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: pos_loyalty_plus
+#: model:ir.model.fields,field_description:pos_loyalty_plus.field_pos_loyalty_report_wizard__end_date
+msgid "End Date"
+msgstr ""
+
+#. module: pos_loyalty_plus
+#: model:ir.model.fields,help:pos_loyalty_plus.field_pos_config__loyalty_points_per_currency
+msgid "How many loyalty points are given per currency unit spent."
+msgstr ""
+
+#. module: pos_loyalty_plus
+#: model:ir.model.fields,field_description:pos_loyalty_plus.field_pos_loyalty_report_wizard__id
+msgid "ID"
+msgstr ""
+
+#. module: pos_loyalty_plus
+#: model:ir.model.fields,field_description:pos_loyalty_plus.field_pos_loyalty_report_wizard____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: pos_loyalty_plus
+#: model:ir.model.fields,field_description:pos_loyalty_plus.field_pos_loyalty_report_wizard__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: pos_loyalty_plus
+#: model:ir.model.fields,field_description:pos_loyalty_plus.field_pos_loyalty_report_wizard__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: pos_loyalty_plus
+#: model:ir.actions.report,name:pos_loyalty_plus.action_report_loyalty_history
+#: model_terms:ir.ui.view,arch_db:pos_loyalty_plus.report_loyalty_history
+msgid "Loyalty History"
+msgstr ""
+
+#. module: pos_loyalty_plus
+#: model:ir.actions.report,name:pos_loyalty_plus.action_report_loyalty_period
+msgid "Loyalty History (Period)"
+msgstr ""
+
+#. module: pos_loyalty_plus
+#: model:ir.model,name:pos_loyalty_plus.model_report_pos_loyalty_plus_report_loyalty_period
+msgid "Loyalty History Period Report"
+msgstr ""
+
+#. module: pos_loyalty_plus
+#: model:ir.model,name:pos_loyalty_plus.model_pos_loyalty_report_wizard
+msgid "Loyalty History Report Wizard"
+msgstr ""
+
+#. module: pos_loyalty_plus
+#: model:ir.model.fields,field_description:pos_loyalty_plus.field_res_partner__loyalty_points
+#: model:ir.model.fields,field_description:pos_loyalty_plus.field_res_users__loyalty_points
+#: model_terms:ir.ui.view,arch_db:pos_loyalty_plus.view_partner_form_loyalty
+msgid "Loyalty Points"
+msgstr ""
+
+#. module: pos_loyalty_plus
+#: model:ir.model.fields,field_description:pos_loyalty_plus.field_pos_order__loyalty_points
+msgid "Loyalty Points Earned"
+msgstr ""
+
+#. module: pos_loyalty_plus
+#: model:ir.actions.act_window,name:pos_loyalty_plus.action_pos_loyalty_report_wizard
+#: model:ir.ui.menu,name:pos_loyalty_plus.menu_pos_loyalty_report_wizard
+msgid "Loyalty Points History"
+msgstr ""
+
+#. module: pos_loyalty_plus
+#: model_terms:ir.ui.view,arch_db:pos_loyalty_plus.report_loyalty_period
+msgid "Loyalty Points History Report"
+msgstr ""
+
+#. module: pos_loyalty_plus
+#: model:ir.model.fields,field_description:pos_loyalty_plus.field_pos_config__loyalty_program_id
+#: model_terms:ir.ui.view,arch_db:pos_loyalty_plus.pos_config_view_form_loyalty
+msgid "Loyalty Program"
+msgstr ""
+
+#. module: pos_loyalty_plus
+#: model_terms:ir.ui.view,arch_db:pos_loyalty_plus.view_pos_loyalty_report_wizard_form
+msgid "Loyalty Report"
+msgstr ""
+
+#. module: pos_loyalty_plus
+#: model:ir.model.fields,help:pos_loyalty_plus.field_pos_order__loyalty_points
+msgid "Loyalty points earned in this order."
+msgstr ""
+
+#. module: pos_loyalty_plus
+#: model_terms:ir.ui.view,arch_db:pos_loyalty_plus.report_loyalty_period
+msgid "No loyalty points found for this period."
+msgstr ""
+
+#. module: pos_loyalty_plus
+#: model_terms:ir.ui.view,arch_db:pos_loyalty_plus.report_loyalty_history
+#: model_terms:ir.ui.view,arch_db:pos_loyalty_plus.report_loyalty_period
+msgid "Order Reference"
+msgstr ""
+
+#. module: pos_loyalty_plus
+#: model:ir.model,name:pos_loyalty_plus.model_pos_config
+msgid "Point of Sale Configuration"
+msgstr ""
+
+#. module: pos_loyalty_plus
+#: model:ir.model,name:pos_loyalty_plus.model_pos_order
+msgid "Point of Sale Orders"
+msgstr ""
+
+#. module: pos_loyalty_plus
+#: model:ir.model,name:pos_loyalty_plus.model_pos_session
+msgid "Point of Sale Session"
+msgstr ""
+
+#. module: pos_loyalty_plus
+#: model_terms:ir.ui.view,arch_db:pos_loyalty_plus.report_loyalty_history
+msgid "Points"
+msgstr ""
+
+#. module: pos_loyalty_plus
+#: model_terms:ir.ui.view,arch_db:pos_loyalty_plus.report_loyalty_period
+msgid ""
+"Points\n"
+"                                    <br/>"
+msgstr ""
+
+#. module: pos_loyalty_plus
+#: model_terms:ir.ui.view,arch_db:pos_loyalty_plus.report_loyalty_history
+#: model_terms:ir.ui.view,arch_db:pos_loyalty_plus.report_loyalty_period
+msgid "Points Earned"
+msgstr ""
+
+#. module: pos_loyalty_plus
+#: model_terms:ir.ui.view,arch_db:pos_loyalty_plus.pos_config_view_form_loyalty
+msgid "Points earned per currency unit spent"
+msgstr ""
+
+#. module: pos_loyalty_plus
+#: model:ir.model.fields,field_description:pos_loyalty_plus.field_pos_config__loyalty_points_per_currency
+msgid "Points per Currency Unit"
+msgstr ""
+
+#. module: pos_loyalty_plus
+#: model_terms:ir.ui.view,arch_db:pos_loyalty_plus.view_pos_loyalty_report_wizard_form
+msgid "Print Report"
+msgstr ""
+
+#. module: pos_loyalty_plus
+#: model:ir.model.fields,field_description:pos_loyalty_plus.field_pos_loyalty_report_wizard__start_date
+msgid "Start Date"
+msgstr ""
+
+#. module: pos_loyalty_plus
+#. odoo-python
+#: code:addons/pos_loyalty_plus/wizard/loyalty_report_wizard.py:0
+#, python-format
+msgid "Start date cannot be later than end date."
+msgstr ""
+
+#. module: pos_loyalty_plus
+#: model:ir.model.fields,help:pos_loyalty_plus.field_pos_config__loyalty_program_id
+msgid "The loyalty program associated with this POS configuration."
+msgstr ""
+
+#. module: pos_loyalty_plus
+#: model:ir.model.fields,field_description:pos_loyalty_plus.field_pos_session__total_loyalty_points
+msgid "Total Loyalty Points"
+msgstr ""
+
+#. module: pos_loyalty_plus
+#: model:ir.model.fields,help:pos_loyalty_plus.field_res_partner__loyalty_points
+#: model:ir.model.fields,help:pos_loyalty_plus.field_res_users__loyalty_points
+msgid "Total loyalty points accumulated by the customer."
+msgstr ""
+
+#. module: pos_loyalty_plus
+#: model:ir.model.fields,help:pos_loyalty_plus.field_pos_session__total_loyalty_points
+msgid "Total loyalty points accumulated in this session."
+msgstr ""
