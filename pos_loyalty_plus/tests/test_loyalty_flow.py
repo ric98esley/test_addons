@@ -93,17 +93,22 @@ class TestPosLoyaltyPlus(TransactionCase):
                             "payment_method_id": self.payment_method.id,
                             "amount": 100,
                             "payment_date": fields.Date.today(),
+                            "name": fields.Datetime.now(),
                         },
                     ]
                 ],
                 "pos_session_id": self.pos_session.id,
                 "partner_id": self.partner.id,
                 "user_id": self.env.uid,
+                "sequence_number": 1,
+                "creation_date": fields.Datetime.to_string(fields.Datetime.now()),
+                "fiscal_position_id": False,
+                "pricelist_id": self.pos_config.pricelist_id.id,
             }
         }
 
         # 1. Create order
-        order_id = self.env["pos.order"].create_from_ui([order_data["data"]])[0]["id"]
+        order_id = self.env["pos.order"].create_from_ui([order_data])[0]["id"]
         order = self.env["pos.order"].browse(order_id)
 
         # 2. Simulate coupon data update (points earned)
@@ -137,3 +142,81 @@ class TestPosLoyaltyPlus(TransactionCase):
             100,
             "Session should have 100 total points",
         )
+
+    def test_loyalty_report_generation(self):
+        """Test that the loyalty report can be rendered without errors"""
+        # Create some data
+        self.pos_config.write({"loyalty_points_per_currency": 1.0})
+        program = self.pos_config.loyalty_program_id
+
+        # Create order with points
+        order_data = {
+            "data": {
+                "name": "Order Report Test",
+                "amount_paid": 50,
+                "amount_total": 50,
+                "amount_tax": 0,
+                "amount_return": 0,
+                "lines": [
+                    [
+                        0,
+                        0,
+                        {
+                            "product_id": self.product1.id,
+                            "qty": 1,
+                            "price_unit": 50,
+                            "price_subtotal": 50,
+                            "price_subtotal_incl": 50,
+                        },
+                    ]
+                ],
+                "statement_ids": [
+                    [
+                        0,
+                        0,
+                        {
+                            "payment_method_id": self.payment_method.id,
+                            "amount": 50,
+                            "payment_date": fields.Date.today(),
+                            "name": fields.Datetime.now(),
+                        },
+                    ]
+                ],
+                "pos_session_id": self.pos_session.id,
+                "partner_id": self.partner.id,
+                "user_id": self.env.uid,
+                "sequence_number": 2,
+                "creation_date": fields.Datetime.to_string(fields.Datetime.now()),
+                "fiscal_position_id": False,
+                "pricelist_id": self.pos_config.pricelist_id.id,
+            }
+        }
+        order_id = self.env["pos.order"].create_from_ui([order_data])[0]["id"]
+        order = self.env["pos.order"].browse(order_id)
+
+        coupon_data = {
+            -1: {
+                "program_id": program.id,
+                "partner_id": self.partner.id,
+                "points": 50,
+                "code": "REPORTCODE",
+            }
+        }
+        order.confirm_coupon_programs(coupon_data)
+
+        self.assertEqual(
+            order.loyalty_points, 50, "Order should have 50 points before report"
+        )
+        self.env.flush_all()
+
+        # Render report
+        report = self.env.ref("pos_loyalty_plus.action_report_loyalty_history")
+        # We use _render_qweb_html for speed and to avoid wkhtmltopdf dependency in some envs,
+        # but _render_qweb_pdf is the real test.
+        # If wkhtmltopdf is missing, it might fail. The log said "You need Wkhtmltopdf".
+        # So let's try _render_qweb_html first as a sanity check for the template.
+        html = report._render_qweb_html(report.id, self.partner.ids)
+        self.assertTrue(html, "Report HTML should be generated")
+        self.assertIn(b"Order Report Test", html[0], "Report should contain order name")
+        self.assertIn(b"50.0", html[0], "Report should contain points")
+        self.assertIn(b"50.0", html[0], "Report should contain points")

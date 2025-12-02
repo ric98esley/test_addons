@@ -1,12 +1,42 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
+    <!-- Form View Inheritance -->
     <record id="view_pos_session_form_loyalty" model="ir.ui.view">
         <field name="name">pos.session.form.loyalty</field>
         <field name="model">pos.session</field>
         <field name="inherit_id" ref="point_of_sale.view_pos_session_form" />
         <field name="arch" type="xml">
-            <xpath expr="//field[@name='total_payments_amount']" position="after">
-                <field name="total_loyalty_points" widget="monetary" />
+            <xpath expr="//field[@name='cash_register_balance_start']" position="after">
+                <field name="total_loyalty_points" />
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Tree View Inheritance -->
+    <record id="view_pos_session_tree_loyalty" model="ir.ui.view">
+        <field name="name">pos.session.tree.loyalty</field>
+        <field name="model">pos.session</field>
+        <field name="inherit_id" ref="point_of_sale.view_pos_session_tree" />
+        <field name="arch" type="xml">
+            <field name="state" position="before">
+                 <field name="total_loyalty_points" optional="show" />
+            </field>
+        </field>
+    </record>
+
+    <!-- Kanban View Inheritance -->
+    <record id="view_pos_session_kanban_loyalty" model="ir.ui.view">
+        <field name="name">pos.session.kanban.loyalty</field>
+        <field name="model">pos.session</field>
+        <field name="inherit_id" ref="point_of_sale.view_pos_session_kanban" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='state']" position="after">
+                <field name="total_loyalty_points" />
+            </xpath>
+            <xpath expr="//div[hasclass('o_kanban_record_body')]" position="inside">
+                <div>
+                    <strong>Points: </strong><field name="total_loyalty_points" />
+                </div>
             </xpath>
         </field>
     </record>
