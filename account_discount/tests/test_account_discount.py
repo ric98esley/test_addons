@@ -1,7 +1,7 @@
 from odoo.tests import TransactionCase, tagged
 
 
-@tagged("post_install", "-at_install")
+@tagged("post_install", "-at_install", "account_discount")
 class TestAccountDiscount(TransactionCase):
     def setUp(self):
         super(TestAccountDiscount, self).setUp()

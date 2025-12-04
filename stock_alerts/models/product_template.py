@@ -1,4 +1,4 @@
-from odoo import api, fields, models
+from odoo import _, api, fields, models
 
 
 class ProductTemplate(models.Model):
@@ -25,6 +25,14 @@ class ProductTemplate(models.Model):
                 and product.minimum_stock > 0
                 and product.qty_available < product.minimum_stock
             )
+
+            if product.stock_below_minimum:
+                product.message_post(
+                    body=f"Stock is below minimum threshold: {product.minimum_stock}",
+                    subject=_("Stock Alert"),
+                    message_type="notification",
+                    subtype_xmlid="mail.mt_note",
+                )
 
     def _search_stock_below_minimum(self, operator, value):
         """

@@ -33,3 +33,11 @@ class AccountMoveLine(models.Model):
                 line.discount = line.partner_type_id.percentage
             else:
                 line.discount = 0.0
+
+    @api.onchange(
+        "partner_id",
+        "partner_type_id",
+        "move_id.move_type",
+    )
+    def _onchange_partner_id(self):
+        self._compute_discount()
